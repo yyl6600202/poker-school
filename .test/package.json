@@ -1,0 +1,12 @@
+{
+  "name": "poker-school-tests",
+  "private": true,
+  "type": "module",
+  "description": "德扑教室的自测脚本（开发用，不属于站点内容）",
+  "scripts": {
+    "test": "node logic-check.mjs && node exact-aa.mjs && node diff.mjs && node dom-check.mjs && node integration.mjs && node single-check.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.3"
+  }
+}

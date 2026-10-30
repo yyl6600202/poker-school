@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>翻后打法 · 德扑教室</title>
+<meta name="description" content="德州扑克翻后教学：牌面结构分类、范围优势与坚果优势、持续下注尺度、听牌与半诈唬、转牌河牌决策。附牌面分析器。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f211b'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle' fill='%23d8b678'%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;animation:none !important}</style></noscript>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="postflop">
+<a class="skip" href="#main">跳到正文</a>
+<header id="site-header"></header>
+
+<main id="main">
+  <section class="wrap" style="padding-block:64px 40px">
+    <span class="eyebrow">03 · 翻后</span>
+    <h1 style="font-size:clamp(30px,4.6vw,46px);max-width:24ch">翻后打法</h1>
+    <p style="max-width:62ch;font-size:17px">翻牌一出现，你手里的牌就不再是最重要的东西了。翻后真正在比的是：<em>谁的范围和这个牌面更配</em>。学会看牌面，你的翻后水平会立刻上一个台阶。</p>
+  </section>
+
+  <!-- 思考顺序 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">决策流程</span>
+      <h2>翻牌后固定问这五句</h2>
+      <p>不用每次都想到完美答案，但顺序不能乱。顺序错了，结论一定错。</p>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="reveal">
+        <ol class="clean">
+          <li><strong>这个牌面更利于谁？</strong> 翻前加注的人通常拿到更多大牌，所以 A 高、K 高的牌面对他有利。</li>
+          <li><strong>我有没有位置？</strong> 没位置意味着信息更少、底池更难控制，尺度要更谨慎。</li>
+          <li><strong>我的牌属于哪个档？</strong> 强到可以打三条街？只能拿一条街的价值？还是只有摊牌价值？</li>
+          <li><strong>我要用多大尺度？</strong> 干燥面小注高频，湿润面大注低频。尺度是信息，别让它变成习惯。</li>
+          <li><strong>下一街我打算怎么办？</strong> 现在就决定转牌、河牌的计划，而不是到了再看。</li>
+        </ol>
+      </div>
+      <div class="panel reveal">
+        <h3>两个必须分清的词</h3>
+        <p style="font-size:14px"><strong>范围优势</strong>：整体而言，谁的手牌平均更强。有范围优势的人可以更频繁地下注，而且用小尺度就够了。</p>
+        <p style="font-size:14px"><strong>坚果优势</strong>：最强的那些牌（坚果）在谁手里。有坚果优势的人可以下大注，因为他敢把全部筹码推进去。</p>
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:0">例：牌面 <span class="cards" data-cards="9h 8h 5s"></span> 由大盲 3-bet 后的对抗——双方都有强牌，但小盲的坚果更多，因为 76s、99 更常在他的 3-bet 范围里。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 牌面结构 -->
+  <section class="section wrap" id="texture">
+    <div class="section-head reveal">
+      <span class="eyebrow">牌面结构</span>
+      <h2>四种最常见的牌面</h2>
+      <p>牌面可以粗略分成"干燥"和"湿润"两类。干燥 = 能改变的牌少、成牌组合少；湿润 = 同花或顺子的可能多，局面随时翻转。</p>
+    </div>
+
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:150px">牌面</th><th>类型</th><th>特征</th><th>谁占优</th><th>建议尺度</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="cards" data-cards="As 7d 2c"></span></td>
+            <td><b>干燥高张面</b></td>
+            <td>彩虹、不连张、有 A</td>
+            <td>翻前加注者极大</td>
+            <td>1/3 池，高频（70%+）</td>
+          </tr>
+          <tr>
+            <td><span class="cards" data-cards="9h 8h 5h"></span></td>
+            <td><b>单色面</b></td>
+            <td>三张同花，同花听牌全部成立</td>
+            <td>接近均衡，坚果在谁手里谁凶</td>
+            <td>小注为主，别用大注赶人</td>
+          </tr>
+          <tr>
+            <td><span class="cards" data-cards="Ks Kd 3h"></span></td>
+            <td><b>对子面</b></td>
+            <td>顶对成对，很少人真的有三条</td>
+            <td>翻前加注者，但他也没有 K</td>
+            <td>1/3 池以下，频率很高</td>
+          </tr>
+          <tr>
+            <td><span class="cards" data-cards="Td 9s 8c"></span></td>
+            <td><b>连通面</b></td>
+            <td>三张连张，顺子听牌成群</td>
+            <td>防守方（大盲）反而更多</td>
+            <td>谨慎，多用 2/3 池，频率降低</td>
+          </tr>
+          <tr>
+            <td><span class="cards" data-cards="Qh Jh 4h"></span></td>
+            <td><b>湿润两色面</b></td>
+            <td>两色 + 两个高张 + 连张</td>
+            <td>大致均衡</td>
+            <td>1/2 池，混合使用</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note reveal">
+      <p><strong>一句话总结：</strong>牌面越干燥、越高，就越适合<em>小注高频</em>；牌面越湿润、越连、越低，就越适合<em>大注低频</em>。因为小注在干燥面上已经能把对手的弱牌赶走，没必要冒险用大注。</p>
+    </div>
+  </section>
+
+  <!-- 牌面分析器 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">工具</span>
+      <h2>牌面分析器</h2>
+      <p>选三张翻牌，看看它属于哪种结构，以及偏干燥还是偏湿润。</p>
+    </div>
+    <div class="panel reveal" style="max-width:820px">
+      <div class="static-only">这个交互组件需要浏览器执行 JavaScript。如果你是通过「静态 HTML 预览」看到的这一页（脚本被禁用），请在浏览器里打开 index.html，或使用预览面板里的「在浏览器中打开」。</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px" id="flopPicker"></div>
+      <div id="flopResult"></div>
+    </div>
+  </section>
+
+  <!-- C-bet -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">持续下注</span>
+      <h2>C-bet：翻后最常见的一个决定</h2>
+      <p>你是翻前加注者，翻牌出来，对手过牌给你。要不要下注？下多大？先看这棵树。</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="panel reveal">
+        <span class="pill green">小注 · 25–33% 池</span>
+        <h3 style="margin-top:12px">范围下注</h3>
+        <p style="margin:0;font-size:14px">用于干燥面、A/K 高面、对子面。你几乎用<em>整个范围</em>下注，让对手的边缘牌便宜地放弃。目标不是立刻赢，而是持续施压。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill">中注 · 50–66% 池</span>
+        <h3 style="margin-top:12px">混合策略</h3>
+        <p style="margin:0;font-size:14px">用于两张同花、有顺子可能的中间面。强牌、听牌、部分边缘牌混合下注，同时保留一部分过牌范围。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill red">大注 · 75–125% 池</span>
+        <h3 style="margin-top:12px">两极化</h3>
+        <p style="margin:0;font-size:14px">用于非常湿润的面。要么是超强牌要价值，要么是纯听牌要弃牌率——中间牌力不下注，直接过牌。大注配窄范围。</p>
+      </div>
+    </div>
+
+    <div class="note warn reveal">
+      <p><strong>什么时候不该 C-bet：</strong>① 牌面对你很不利（比如你加注后被 BTN 跟注，翻牌 8♠7♠6♦）；② 你人多（三个以上对手，中弱牌直接放弃）；③ 你没有后门或听牌，纯空气在湿润面上硬打。</p>
+    </div>
+  </section>
+
+  <!-- 听牌 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">听牌</span>
+      <h2>听牌不是"等等看"，是有价格的赌注</h2>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="reveal">
+        <h3>什么时候加注而不是跟注</h3>
+        <ul class="clean">
+          <li><strong>你有位置</strong>：加注可以让你在转牌拿到免费看河牌的机会，或者在河牌诈唬。</li>
+          <li><strong>补牌多且干净</strong>：同花听牌 + 两头顺（15 张补牌）远比"只有 4 张卡顺"值得加注。</li>
+          <li><strong>你的 A 或 K 也能赢</strong>：能给对手的高对施压，等于多出 6 张补牌。</li>
+          <li><strong>反向情况</strong>：你在没位置、补牌不干净（可能追到却输给更大同花）时，跟注就够了。</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h3>半诈唬的数学</h3>
+        <p style="font-size:14px">假设底池 100，你手持 <span class="cards" data-cards="Qh Jh"></span> 牌面 <span class="cards" data-cards="9h 4h 2c"></span>，有 9 张同花补牌（约 36% 到河牌完成）。</p>
+        <p style="font-size:14px">你下注 60。对手弃牌，你直接赢 100；对手跟注，你花 60 买一个 36% 的胜率。这两条路都好过"过牌等他"。</p>
+        <div class="note tip" style="margin-bottom:0"><p>半诈唬的价值在于<strong>两条赢法</strong>：他弃牌你赢，他跟注你还有机会。纯诈唬只有一条赢法，所以半诈唬可以更频繁。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 转牌河牌 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">后面两条街</span>
+      <h2>转牌与河牌</h2>
+    </div>
+    <div class="grid g3">
+      <div class="panel reveal">
+        <h3 style="font-size:16px">哪些转牌改变局面</h3>
+        <ul class="clean" style="font-size:14px;margin-bottom:0">
+          <li>完成同花、完成顺子的牌 → 听牌翻身</li>
+          <li>高张（A/K/Q）→ 利于翻前加注者</li>
+          <li>让牌面成对的牌 → 降低强牌的相对价值</li>
+          <li>空白牌（如 2♣）→ 局面基本不变，可以继续打</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h3 style="font-size:16px">河牌只剩两个问题</h3>
+        <ul class="clean" style="font-size:14px;margin-bottom:0">
+          <li><strong>我的牌能被他更差的牌跟注吗？</strong> 能，就价值下注；不能，就过牌。</li>
+          <li><strong>我的牌完全打不过他吗？</strong> 是，而且他没有弃牌的迹象，那就别 bluff 了。</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h3 style="font-size:16px">SPR 速查</h3>
+        <ul class="clean" style="font-size:14px;margin-bottom:0">
+          <li>SPR ≤ 2：一对就够打光，别犹豫。</li>
+          <li>SPR 3–6：顶对要谨慎，两对以上才愿意放全下。</li>
+          <li>SPR 10+：小牌别把底池做大，位置和信息更值钱。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 完整示例 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">完整示例</span>
+      <h2>一手牌走完三条街</h2>
+      <p>你在按钮位，手持 <span class="cards" data-cards="Ah Qd"></span>，加注到 3BB，只有大盲跟注。</p>
+    </div>
+    <div class="panel reveal">
+      <ol class="clean" style="margin-bottom:0">
+        <li><strong>翻牌</strong> <span class="cards" data-cards="Qc 7h 2s"></span>：你击中了顶对顶踢脚。牌面很干燥，大盲过牌给你 → <em>下注 1/3 池</em>。你范围里的牌大多都该在这里小注。</li>
+        <li><strong>大盲跟注</strong>：他的范围偏向中等对子、7x、以及 56s 这类听牌。他的强牌（两对以上）很少，因为那些牌会加注。</li>
+        <li><strong>转牌</strong> <span class="cards" data-cards="9h"></span>：出现后门同花听牌和 9 的组合。他再过牌 → <em>继续下注 2/3 池</em>。你的顶对仍然领先他大部分范围，而且现在多了同花听牌的对手，值得收更多钱。</li>
+        <li><strong>他再次跟注</strong>：他的范围收窄到：更强的 Q、两对、或者未完成的听牌。</li>
+        <li><strong>河牌</strong> <span class="cards" data-cards="2c"></span>：空白牌，但牌面出现对子。他过牌 → <em>下注半个底池</em>。如果他全下加注，这里就该弃牌：河牌的全下加注在低级别几乎总是两对以上。</li>
+      </ol>
+    </div>
+    <div class="note tip reveal">
+      <p>注意这手牌里没有一次"神操作"。三个决定都很朴素：干燥面小注、转牌继续价值、河牌付得起就付不起就弃。稳定的赢法就是这样。</p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="panel reveal" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+      <div>
+        <h3 style="margin-bottom:4px">"付得起吗"这三个字，可以算出来</h3>
+        <p style="margin:0;font-size:14px">底池赔率、补牌、期望值——三个公式解决翻后 90% 的纠结。</p>
+      </div>
+      <a class="btn" href="math.html">04 · 数学与赔率 →</a>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="assets/app.js"></script>
+<script src="assets/postflop.js"></script>
+</body>
+</html>

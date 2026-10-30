@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>位置与起手牌 · 德扑教室</title>
+<meta name="description" content="德州扑克位置与起手牌教学：169 格可交互起手牌矩阵、各位置开池范围与比例、翻牌前标准动作表。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f211b'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle' fill='%23d8b678'%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;animation:none !important}</style></noscript>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="ranges">
+<a class="skip" href="#main">跳到正文</a>
+<header id="site-header"></header>
+
+<main id="main">
+  <section class="wrap" style="padding-block:64px 40px">
+    <span class="eyebrow">02 · 翻牌前</span>
+    <h1 style="font-size:clamp(30px,4.6vw,46px);max-width:24ch">位置与起手牌</h1>
+    <p style="max-width:62ch;font-size:17px">翻牌前的决定只有三种：加注、跟注、弃牌。它决定了你 80% 的长期盈亏，也是唯一可以提前背下来的部分。核心只有一句话：<em>位置越靠后，能玩的牌越宽</em>。</p>
+  </section>
+
+  <!-- 位置表 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">位置</span>
+      <h2>九个座位，强弱分明</h2>
+      <p>位置的价值在于信息：你看到别人怎么行动之后再做决定。同时位置决定了翻牌后谁先说话——最后说话的人可以控制底池、可以选择便宜看牌、也可以在对手示弱时出手。</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:170px">位置</th><th style="width:120px">建议开池比例</th><th>要点</th></tr></thead>
+        <tbody id="posTable"></tbody>
+      </table>
+    </div>
+    <div class="note tip reveal">
+      <p><strong>上手就用这个顺序记：</strong>UTG 最紧 → 越往后越松 → 按钮位最松 → 小盲特殊（位置差但价格便宜，通常"加注或弃牌"，不要跛入）→ 大盲因为已经投了 1 个盲注，可以用较宽的范围防守。</p>
+    </div>
+  </section>
+
+  <!-- 矩阵 -->
+  <section class="section wrap" id="matrix">
+    <div class="section-head reveal">
+      <span class="eyebrow">起手牌矩阵</span>
+      <h2>169 种起手牌，点开看怎么打</h2>
+      <p>对角线是 13 种对子；右上是同花（s），左下是非同花（o）。上面的标签可以切换"强度分级"和"各位置开池范围"，点击任意格子查看它在每个位置该怎么处理。</p>
+    </div>
+
+      <div class="static-only">这个交互组件需要浏览器执行 JavaScript。如果你是通过「静态 HTML 预览」看到的这一页（脚本被禁用），请在浏览器里打开 index.html，或使用预览面板里的「在浏览器中打开」。</div>
+    <div class="grid-shell">
+      <div class="reveal">
+        <div class="grid-toolbar" id="rangeTabs"></div>
+        <div class="range-grid" id="rangeGrid" role="grid" aria-label="起手牌矩阵"></div>
+        <div class="range-legend" id="rangeLegend"></div>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:14px" id="rangeStat"></p>
+        <p style="font-size:12px;color:var(--muted-2);margin-top:6px">注：范围内的比例是"按组合数加权"的真实占比，不是简单的格子数。起手牌范围来自教学近似，和 GTO 解算器有差异，目的在帮你建立结构感。</p>
+      </div>
+      <aside class="panel reveal" id="handDetail" style="position:sticky;top:90px"></aside>
+    </div>
+  </section>
+
+  <!-- 组合数 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">为什么是 169</span>
+      <h2>1326 种组合，压缩成 169 格</h2>
+      <p>一副牌 52 张，任取 2 张是 1326 种组合。但 AKs 的 4 种组合在翻牌前几乎等价，于是把同点数、同花色的组合归成一类，就得到 169 种。</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th>类别</th><th>种类</th><th>每种组合数</th><th>组合合计</th><th>占比</th><th>说明</th></tr></thead>
+        <tbody id="comboTable"></tbody>
+      </table>
+    </div>
+    <div class="note reveal">
+      <p>这个换算非常有用：说"开池 18%"就是在说约 240 种组合。当你听人说"我在这里只弃 5%"，你就能想象出那是多窄的一小撮牌。</p>
+    </div>
+  </section>
+
+  <!-- 原则 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">三条原则</span>
+      <h2>不用背表也能记住的东西</h2>
+    </div>
+    <div class="grid g3">
+      <div class="panel reveal">
+        <span class="pill">原则 1</span>
+        <h3 style="margin-top:12px">前紧后松</h3>
+        <p style="margin:0">后面还有人没说话时，你的加注随时可能被再加注，而你在不利位置打一个被加注的底池——这是德扑里最难受的处境。所以早位只打最强的一小撮。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill">原则 2</span>
+        <h3 style="margin-top:12px">同花与连张的隐性价值</h3>
+        <p style="margin:0">72o 和 76s 的翻前胜率其实相差不大，但 76s 更容易在看得懂的局面里赢到大底池，72o 只能在你看不懂的局面里输钱。可玩性比绝对胜率重要得多。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill">原则 3</span>
+        <h3 style="margin-top:12px">面对加注要收紧</h3>
+        <p style="margin:0">无人入池时能开池的牌，不等于能跟别人的加注。经验上：面对开池，能继续的手牌范围大约只有开池范围的一半；面对 3-bet，再砍一半。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 标准动作 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">标准线</span>
+      <h2>翻牌前的四种场景</h2>
+      <p>先固定一套动作，把"我要不要玩"这个纠结消灭掉，注意力才能留给翻牌后。</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:150px">场景</th><th>动作</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td><b>前面都弃牌</b></td><td>按位置范围<strong>开池加注 2～3 BB</strong></td><td>不要在能加注的时候跛入。加注让你有机会直接赢下盲注，也让你在翻牌后占据主动</td></tr>
+          <tr><td><b>有人跛入</b></td><td>用强牌<strong>加注</strong>（约 3BB + 每个跛入者 1BB）</td><td>惩罚便宜的入池者；边缘牌直接弃掉，不要跟着跛入</td></tr>
+          <tr><td><b>面对一个开池</b></td><td>强牌 <strong>3-bet</strong>（约 3 倍），可玩牌<strong>在有位置时跟注</strong></td><td>没有位置时，倾向于"加注或弃牌"，跟注会让翻后极其难打</td></tr>
+          <tr><td><b>面对 3-bet</b></td><td>顶级牌 <strong>4-bet</strong> 或全下；中等牌<strong>跟注</strong>；其余弃牌</td><td>此时底池已经很大，翻后基本是"要么全下要么弃牌"的形状</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note warn reveal">
+      <p><strong>最常见的亏损来源：</strong>在大盲位用 KJ、A9 这类牌跟注别人的加注，然后在翻牌圈击中一张 J，又不敢放。这类牌的问题不是"打不过"，而是<em>击中了也常常是第二好</em>。位置差的时候，把这类边缘牌直接弃掉，长期收益是正的。</p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="panel reveal" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+      <div>
+        <h3 style="margin-bottom:4px">牌选好了，翻牌该怎么办</h3>
+        <p style="margin:0;font-size:14px">翻后比的不是手牌，是范围、牌面结构和下注尺度。</p>
+      </div>
+      <a class="btn" href="postflop.html">03 · 翻后打法 →</a>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="assets/app.js"></script>
+<script src="assets/ranges.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>规则与牌型 · 德扑教室</title>
+<meta name="description" content="德州扑克规则入门：牌桌结构、盲注、行动顺序、九种牌型强弱与出现概率、可执行的动作，以及新手最常见的六种错误。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f211b'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle' fill='%23d8b678'%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;animation:none !important}</style></noscript>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="basics">
+<a class="skip" href="#main">跳到正文</a>
+<header id="site-header"></header>
+
+<main id="main">
+  <section class="wrap" style="padding-block:64px 40px">
+    <span class="eyebrow">01 · 基础</span>
+    <h1 style="font-size:clamp(30px,4.6vw,46px);max-width:22ch">规则与牌型</h1>
+    <p style="max-width:62ch;font-size:17px">德州扑克（Texas Hold'em）只用一副 52 张牌。你拿到 2 张只有自己能看的暗牌，公共牌共发 5 张，最后从 7 张里挑出最好的 5 张比大小。先把牌型和秩序搞清楚，后面才谈得上策略。</p>
+  </section>
+
+  <!-- 一局的结构 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">牌桌</span>
+      <h2>一局牌是怎么走的</h2>
+      <p>所有人轮流当一次"按钮（Button / BTN）"。按钮左边第二位下小盲注，第三位下大盲注——这两个强制注就是每手牌最初的那个底池。</p>
+    </div>
+
+    <div class="grid g2" style="align-items:start">
+      <div class="reveal">
+        <h3>四个下注轮</h3>
+        <ol class="clean">
+          <li><strong>翻牌前 Preflop</strong>：每人只有 2 张暗牌，从大盲左手第一位开始行动。</li>
+          <li><strong>翻牌 Flop</strong>：发 3 张公共牌，新一轮下注。</li>
+          <li><strong>转牌 Turn</strong>：发第 4 张公共牌，新一轮下注。</li>
+          <li><strong>河牌 River</strong>：发第 5 张公共牌，最后一轮下注，然后亮牌比大小。</li>
+        </ol>
+        <div class="note">
+          <p><strong>关键：</strong>每一轮的底池都是累积的。翻牌前底池里 3 个大盲，到河牌可能变成 300 个大盲——后面的决定金额更大，因此更重要。</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3>行动顺序</h3>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>阶段</th><th>第一个行动</th><th>最后一个行动</th></tr></thead>
+            <tbody>
+              <tr><td>翻牌前</td><td>枪口位 UTG</td><td>大盲 BB</td></tr>
+              <tr><td>翻牌后</td><td>小盲 SB</td><td>按钮 BTN</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px;font-size:14px">翻牌前大盲已经投过注，所以有最后行动权；翻牌后从按钮左边第一位开始，<em>按钮永远最后说话</em>。这就是"位置优势"的物理来源。</p>
+        <p style="font-size:14px;margin-bottom:0">9 人桌的位置从强到弱大致是：<span class="pill mute">BTN</span> <span class="pill mute">CO</span> <span class="pill mute">HJ</span> <span class="pill mute">MP</span> <span class="pill mute">UTG</span> <span class="pill mute">BB</span> <span class="pill mute">SB</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 牌型 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">牌型</span>
+      <h2>九种牌型，从强到弱</h2>
+      <p>右侧百分比是"打到最后摊牌时，随机拿到该牌型"的概率（按 7 张牌估算）。注意：一对占了 43.8%，也就是说大多数牌局的结果是"小牌对轰"，真正的巨牌并不常见。</p>
+    </div>
+
+    <div class="rank-list">
+      <div class="rank-row top reveal">
+        <div class="rank-no">1</div>
+        <div class="rank-name">同花顺 <small>Straight Flush · 同花色且连续；A 高即"皇家同花顺"</small></div>
+        <div class="cards" data-cards="Ah Kh Qh Jh Th"></div>
+        <div class="rank-prob">0.028%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">2</div>
+        <div class="rank-name">四条 <small>Four of a Kind · 四张同点数</small></div>
+        <div class="cards" data-cards="9s 9h 9d 9c Ks"></div>
+        <div class="rank-prob">0.17%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">3</div>
+        <div class="rank-name">葫芦 <small>Full House · 三张 + 一对</small></div>
+        <div class="cards" data-cards="Ks Kh Kd 7c 7s"></div>
+        <div class="rank-prob">2.6%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">4</div>
+        <div class="rank-name">同花 <small>Flush · 五张同一花色，不连续</small></div>
+        <div class="cards" data-cards="As Js 9s 6s 3s"></div>
+        <div class="rank-prob">3.0%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">5</div>
+        <div class="rank-name">顺子 <small>Straight · 五张连续点数，花色不限</small></div>
+        <div class="cards" data-cards="8d 7c 6s 5h 4d"></div>
+        <div class="rank-prob">4.6%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">6</div>
+        <div class="rank-name">三条 <small>Three of a Kind · 三张同点数</small></div>
+        <div class="cards" data-cards="Qc Qd Qh 9s 4h"></div>
+        <div class="rank-prob">4.8%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">7</div>
+        <div class="rank-name">两对 <small>Two Pair · 两组对子</small></div>
+        <div class="cards" data-cards="Js Jh 6d 6c As"></div>
+        <div class="rank-prob">23.5%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">8</div>
+        <div class="rank-name">一对 <small>One Pair · 两张同点数</small></div>
+        <div class="cards" data-cards="Ts Th Ad 8c 3s"></div>
+        <div class="rank-prob">43.8%</div>
+      </div>
+      <div class="rank-row reveal">
+        <div class="rank-no">9</div>
+        <div class="rank-name">高牌 <small>High Card · 什么都没有，比最大单张</small></div>
+        <div class="cards" data-cards="As Qd 9c 5h 2s"></div>
+        <div class="rank-prob">17.4%</div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:28px">
+      <div class="panel reveal">
+        <h3>同牌型怎么比大小</h3>
+        <ul class="clean" style="margin-bottom:0">
+          <li>先比牌型等级，等级相同再比点数。</li>
+          <li>两对：先比大的那对，再比小的那对，最后比踢脚（kicker）。</li>
+          <li>顺子：比最高那张。<em>A2345 是最小的顺子</em>（A 当 1 用）；TJQKA 是最大的顺子。</li>
+          <li><strong>花色永远不分大小</strong>。两个人都成同一张牌型的顺子，就是平局（split pot）。</li>
+          <li>每人只能用 <b>5 张</b>。你有 7 张可挑，挑最好的 5 张组合。</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h3>最容易搞混的三组</h3>
+        <ul class="clean" style="margin-bottom:0">
+          <li><strong>葫芦 vs 同花</strong>：葫芦更大。三张加一对，比五张同花强。</li>
+          <li><strong>三条 vs 两对</strong>：三条更大，哪怕两对看起来牌更多。</li>
+          <li><strong>同花 vs 顺子</strong>：同花更大。这就是为什么同花色的起手牌更值钱。</li>
+        </ul>
+        <div class="note tip" style="margin-bottom:0">
+          <p>公共牌很大时（比如牌面本身就是顺子），桌上所有人都"有"这个牌型。这时比的不是谁有，而是<strong>谁的踢脚更好</strong>。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 动作 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">动作</span>
+      <h2>你只有五个选择</h2>
+      <p>轮到你时，能做的动作其实很少。新手 90% 的错误都发生在"该弃牌却跟注"和"该下注却过牌"之间。</p>
+    </div>
+
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:130px">动作</th><th>含义</th><th>什么时候用</th></tr></thead>
+        <tbody>
+          <tr><td><b>过牌 Check</b></td><td>不下注，把行动权交给下一位（前面没人下注时才能用）</td><td>牌力中等、想控制底池，或想让对手先暴露意图</td></tr>
+          <tr><td><b>下注 Bet</b></td><td>把一个金额放进底池</td><td>你领先想要价值，或者你想让对手弃牌</td></tr>
+          <tr><td><b>跟注 Call</b></td><td>付出与对手下注相同的金额</td><td>你判断胜率高于底池赔率要求的胜率</td></tr>
+          <tr><td><b>加注 Raise</b></td><td>在对手下注的基础上再加钱（含 3-bet）</td><td>你想做大底池、施加压力，或阻断对手的便宜看牌</td></tr>
+          <tr><td><b>弃牌 Fold</b></td><td>放弃这手牌</td><td>打不过对手的范围，或者价格不划算</td></tr>
+          <tr><td><b>全下 All-in</b></td><td>把筹码全部推进去</td><td>通常是前面几个动作的极端版本，用来最大化价值或最大化压力</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note warn reveal" style="margin-top:24px">
+      <p><strong>关于最小加注：</strong>加注至少要等于对手这次下注的增量。比如对手下注 20（此前 10），你的最少加注额是 40。搞错这个规则是线下局最常见的纠纷源头，不确定就开口问清楚。</p>
+    </div>
+  </section>
+
+  <!-- 术语 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">术语</span>
+      <h2>看直播听不懂的 12 个词</h2>
+    </div>
+    <div class="grid g3">
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Limp 跛入</h3><p style="font-size:13.5px;margin:0">翻牌前只跟大盲、不加注。便宜，但放弃了主动权，也把弱牌带进了翻牌。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Open Raise 开池加注</h3><p style="font-size:13.5px;margin:0">翻牌前第一个加注的人。标准是 2～3 个大盲，位置越差开得越大。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">3-bet 三次加注</h3><p style="font-size:13.5px;margin:0">大盲算 1-bet、开池算 2-bet，对开池再加注就是 3-bet。通常 3 倍开池额。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">C-bet 持续下注</h3><p style="font-size:13.5px;margin:0">翻牌前加注的人，在翻牌继续下注。现代打法是"高频小注"。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Check-raise 过牌加注</h3><p style="font-size:13.5px;margin:0">先过牌，等对手下注后再加注。常用来在不利位置做强牌，或者做半诈唬。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">SPR 筹码底池比</h3><p style="font-size:13.5px;margin:0">剩余筹码 ÷ 当前底池。SPR 越小（≤2），越适合用一对就打到全下。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Outs 补牌</h3><p style="font-size:13.5px;margin:0">能让你的牌变成赢家的牌。听同花是 9 张补牌，两头顺是 8 张。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Blocker 阻断牌</h3><p style="font-size:13.5px;margin:0">你手里的牌减少了对手能拿到的组合。比如手持 A♠，对手拿坚果同花的概率就低了。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Semi-bluff 半诈唬</h3><p style="font-size:13.5px;margin:0">用听牌下注。对手弃牌你直接赢，对手跟注你还有机会成牌。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Showdown 摊牌</h3><p style="font-size:13.5px;margin:0">河牌下注结束、双方亮牌比大小的环节。很多底池根本走不到摊牌。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">VPIP / PFR</h3><p style="font-size:13.5px;margin:0">入池率 / 翻前加注率。用来粗略描述一个玩家有多松、多凶。</p></div>
+      <div class="panel panel-flat reveal"><h3 style="font-size:15px">Tilt 上头</h3><p style="font-size:13.5px;margin:0">因为输钱而情绪化地乱打。这是唯一一个会让你连输十次的"技术问题"。</p></div>
+    </div>
+  </section>
+
+  <!-- 新手错误 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">避坑</span>
+      <h2>新手最常犯的六个错</h2>
+    </div>
+    <div class="grid g2">
+      <div class="panel reveal"><span class="pill red">错误 1</span><h3 style="margin-top:12px">什么都想看一眼</h3><p style="margin:0">"才 2 个大盲，看看嘛"——一晚上这么看二十次，就是 40 个大盲。入池范围是新手第一个要收紧的东西。</p></div>
+      <div class="panel reveal"><span class="pill red">错误 2</span><h3 style="margin-top:12px">只看自己的两张牌</h3><p style="margin:0">德扑比的从来不是"我有什么牌"，而是"我的范围对上他的范围，在这个牌面上谁占优"。</p></div>
+      <div class="panel reveal"><span class="pill red">错误 3</span><h3 style="margin-top:12px">大牌不敢下注</h3><p style="margin:0">怕对手跑掉所以只跟注，结果三条赢了一个小底池。强牌不下注，等于把价值白送。</p></div>
+      <div class="panel reveal"><span class="pill red">错误 4</span><h3 style="margin-top:12px">听牌无脑跟到底</h3><p style="margin:0">听同花有 9 张补牌，但只有价格合适才值得跟。翻牌圈跟一条街大约需要 35% 的胜率。</p></div>
+      <div class="panel reveal"><span class="pill red">错误 5</span><h3 style="margin-top:12px">不看位置</h3><p style="margin:0">在枪口位打 K9s、在按钮位弃掉 K9s——同一手牌，位置不同，结论完全相反。</p></div>
+      <div class="panel reveal"><span class="pill red">错误 6</span><h3 style="margin-top:12px">输钱就打得更松</h3><p style="margin:0">这就是 tilt。它不会让你赢回来，只会让亏损加速。真正的止损是起身走开十分钟。</p></div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="panel reveal" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+      <div>
+        <h3 style="margin-bottom:4px">规则搞清楚了，下一步学"该玩哪些牌"</h3>
+        <p style="margin:0;font-size:14px">同样一手牌，位置不同打法完全相反。这是新手提升最快的一块。</p>
+      </div>
+      <a class="btn" href="ranges.html">02 · 位置与起手牌 →</a>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

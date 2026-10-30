@@ -1,0 +1,13 @@
+# 依赖
+node_modules/
+.test/node_modules/
+.test/.npm-cache/
+
+# 构建/截图产物
+.shots/
+*.log
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数学与赔率 · 德扑教室</title>
+<meta name="description" content="德州扑克数学：底池赔率计算器、补牌与 2/4 法则、期望值、诈唬盈亏平衡，以及可交互的手牌胜率模拟器。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f211b'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle' fill='%23d8b678'%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;animation:none !important}</style></noscript>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="math">
+<a class="skip" href="#main">跳到正文</a>
+<header id="site-header"></header>
+
+<main id="main">
+  <section class="wrap" style="padding-block:64px 40px">
+    <span class="eyebrow">04 · 数学</span>
+    <h1 style="font-size:clamp(30px,4.6vw,46px);max-width:24ch">数学与赔率</h1>
+    <p style="max-width:62ch;font-size:17px">德扑里绝大多数"纠结"，其实是一个除法。你只要会算两个数：<em>我需要多少胜率</em> 和 <em>我实际有多少胜率</em>。前者靠底池赔率算，后者靠补牌估。</p>
+  </section>
+
+  <!-- 计算器组 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">算式</span>
+      <h2>三个必须会算的除法</h2>
+      <p>拖动滑块就能看到结果。先理解公式，再让计算器替你算。</p>
+    </div>
+
+    <div class="calc-grid">
+      <!-- 底池赔率 -->
+      <div class="calc reveal" id="pot">
+        <h3>底池赔率</h3>
+        <p class="sub">对手下注之后，你跟注需要多少胜率？</p>
+        <div class="field">
+          <label>下注前的底池 <span id="potVal">100</span></label>
+          <input type="range" id="potIn" min="10" max="600" step="5" value="100" aria-label="下注前的底池">
+        </div>
+        <div class="field">
+          <label>对手下注 <span id="betVal">50</span></label>
+          <input type="range" id="betIn" min="5" max="600" step="5" value="50" aria-label="对手下注额">
+        </div>
+        <div class="result"><span class="big" id="potOdds">25.0%</span><span class="unit">需要的胜率</span></div>
+        <div class="bar"><span class="win" id="oddsBar" style="width:25%"></span></div>
+        <p class="result-note" id="potNote"></p>
+      </div>
+
+      <!-- 补牌 -->
+      <div class="calc reveal">
+        <h3>补牌换算胜率</h3>
+        <p class="sub">我还有几张能赢的牌？到河牌之前能追上的概率是多少？</p>
+        <div class="field">
+          <label>补牌数 <span id="outsVal">9</span> 张</label>
+          <input type="range" id="outsIn" min="1" max="21" step="1" value="9" aria-label="补牌数">
+        </div>
+        <div class="field">
+          <label for="streetIn">当前街</label>
+          <select id="streetIn">
+            <option value="flop">翻牌圈（还剩 2 张牌要发）</option>
+            <option value="turn">转牌圈（只剩 1 张牌）</option>
+          </select>
+        </div>
+        <div class="result"><span class="big" id="outsPct">35.0%</span><span class="unit">成牌概率</span></div>
+        <div class="bar"><span class="win" id="outsBar" style="width:35%"></span></div>
+        <p class="result-note" id="outsNote"></p>
+      </div>
+
+      <!-- 诈唬 -->
+      <div class="calc reveal">
+        <h3>诈唬的盈亏平衡点</h3>
+        <p class="sub">这一枪要让对手多频繁地弃牌，才是不亏的？</p>
+        <div class="field">
+          <label>底池 <span id="fpVal">100</span></label>
+          <input type="range" id="fpIn" min="10" max="600" step="5" value="100" aria-label="底池">
+        </div>
+        <div class="field">
+          <label>你的下注 <span id="fbVal">100</span></label>
+          <input type="range" id="fbIn" min="5" max="600" step="5" value="100" aria-label="下注额">
+        </div>
+        <div class="result"><span class="big" id="foldPct">50.0%</span><span class="unit">需要的弃牌率</span></div>
+        <div class="bar"><span class="win" id="foldBar" style="width:50%"></span></div>
+        <p class="result-note" id="foldNote"></p>
+      </div>
+
+      <!-- EV -->
+      <div class="calc reveal">
+        <h3>期望值 EV 怎么看</h3>
+        <p class="sub">每一次行动都是一个"平均值"，正 EV 的行为重复一万次你一定赚钱。</p>
+        <div style="background:var(--surface-2);border:1px solid var(--line-2);border-radius:10px;padding:16px 18px;font-family:var(--mono);font-size:13.5px;line-height:2;color:var(--ink-2)">
+          EV = (赢的概率 × 赢的钱)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;− (输的概率 × 输的钱)
+        </div>
+        <p style="font-size:13.5px;margin-top:16px">例：底池 100，你花 50 跟注。你的胜率 30%。</p>
+        <p style="font-size:13.5px;font-family:var(--mono);color:var(--green);margin-bottom:8px">EV = 0.30 × 150 − 0.70 × 50 = +10</p>
+        <p style="font-size:13.5px;margin:0">正 EV，长期该跟。注意分子是<strong>最终底池</strong>（150），不是原来那 100。</p>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:24px">
+      <div class="note tip reveal">
+        <p><strong>2 / 4 法则：</strong>翻牌圈把补牌数 ×4，转牌圈 ×2，就是大致的成牌概率。9 张补牌 → 翻牌 36%、转牌 18%。补牌超过 9 张时会略高估，所以要减一点（9 张估算 35%、12 张约 45%、15 张约 54%）。</p>
+      </div>
+      <div class="note reveal">
+        <p><strong>隐含赔率是什么：</strong>如果你追上了，对手还会再付你钱，那么你实际的价格比底池赔率更好。但别把隐含赔率当免死金牌——对手可能根本不付，也可能你追上了仍然输（反向隐含赔率）。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见听牌 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">背下来</span>
+      <h2>常见听牌的补牌数</h2>
+      <p>这几行背熟，桌上就不用算了。数字是翻牌圈见到河牌的成牌概率。</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:190px">听牌类型</th><th>示例</th><th>补牌</th><th>翻牌→河牌</th><th>转牌→河牌</th></tr></thead>
+        <tbody>
+          <tr><td><b>同花听牌</b></td><td><span class="cards" data-cards="Ah Kh"></span> 配 <span class="cards" data-cards="7h 4h 2c"></span></td><td class="num">9</td><td class="num">35.0%</td><td class="num">19.6%</td></tr>
+          <tr><td><b>两头顺听牌</b></td><td><span class="cards" data-cards="9c 8d"></span> 配 <span class="cards" data-cards="7h 6s 2c"></span></td><td class="num">8</td><td class="num">31.5%</td><td class="num">17.4%</td></tr>
+          <tr><td><b>卡顺听牌</b></td><td><span class="cards" data-cards="Tc 9d"></span> 配 <span class="cards" data-cards="7h 6s 2c"></span></td><td class="num">4</td><td class="num">16.5%</td><td class="num">8.7%</td></tr>
+          <tr><td><b>两张高牌</b></td><td><span class="cards" data-cards="Ac Kd"></span> 配 <span class="cards" data-cards="7h 4h 2c"></span></td><td class="num">6</td><td class="num">24.1%</td><td class="num">13.0%</td></tr>
+          <tr><td><b>同花 + 两头顺</b></td><td><span class="cards" data-cards="Jh Th"></span> 配 <span class="cards" data-cards="9h 8h 2c"></span></td><td class="num">15</td><td class="num">54.1%</td><td class="num">32.6%</td></tr>
+          <tr><td><b>对子追三条</b></td><td><span class="cards" data-cards="8c 8d"></span> 配 <span class="cards" data-cards="Kh 4h 2c"></span></td><td class="num">2</td><td class="num">8.4%</td><td class="num">4.3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note warn reveal">
+      <p><strong>注意"干净"两个字：</strong>9 张同花补牌里，如果有一张会让牌面成对、或者你的对手可能已经拿到更大的同花，那实际有效的补牌就不到 9 张。补牌要打折扣，这是新手最容易高估的地方。</p>
+    </div>
+  </section>
+
+  <!-- 胜率模拟器 -->
+  <section class="section wrap" id="equity">
+    <div class="section-head reveal">
+      <span class="eyebrow">模拟器</span>
+      <h2>这两手牌，到底谁领先？</h2>
+      <p>选四张牌（我方两张、对方两张），用蒙特卡洛方法随机发一万两千次河牌，统计真实胜率。这是理解"哪手牌更强"最快的方式。</p>
+    </div>
+
+      <div class="static-only">这个交互组件需要浏览器执行 JavaScript。如果你是通过「静态 HTML 预览」看到的这一页（脚本被禁用），请在浏览器里打开 index.html，或使用预览面板里的「在浏览器中打开」。</div>
+    <div class="calc reveal" style="max-width:860px">
+      <div class="slots" id="slots"></div>
+      <div class="picker" id="deck" aria-label="选择手牌"></div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 20px">
+        <button class="btn btn-sm" id="simBtn">开始模拟</button>
+        <button class="btn btn-sm btn-ghost" id="randBtn">随机两手</button>
+        <button class="btn btn-sm btn-ghost" id="clearBtn">清空</button>
+        <span style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap">
+          <button class="tab" data-preset="As Ah|Ks Kh">AA vs KK</button>
+          <button class="tab" data-preset="As Ks|2c 2d">AKs vs 22</button>
+          <button class="tab" data-preset="Ac Qd|7h 6h">AQo vs 76s</button>
+        </span>
+      </div>
+
+      <div class="bar"><span class="win" id="eqWin" style="width:50%"></span><span class="tie" id="eqTie" style="width:0%"></span><span class="lose" id="eqLose" style="width:50%"></span></div>
+      <div class="bar-key">
+        <span><i style="background:#35b57f"></i>我方胜 <b id="eqWinTxt">—</b></span>
+        <span><i style="background:var(--lime)"></i>平局 <b id="eqTieTxt">—</b></span>
+        <span><i style="background:rgba(255,255,255,.2)"></i>对方胜 <b id="eqLoseTxt">—</b></span>
+      </div>
+      <p class="result-note" id="eqNote" style="margin-top:14px">先在上面点四张牌，然后点"开始模拟"。</p>
+    </div>
+  </section>
+
+  <!-- 资金管理 -->
+  <section class="section wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">最后一条</span>
+      <h2>比所有数学都重要：资金管理</h2>
+    </div>
+    <div class="grid g3">
+      <div class="panel reveal">
+        <span class="pill">买入数</span>
+        <h3 style="margin-top:12px">至少 20–30 个买入</h3>
+        <p style="margin:0;font-size:14px">打 1/2 现金局，带 200。你的账户里至少要有 4000–6000。这不是保守，这是让你在连输十天之后还活着。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill">止损</span>
+        <h3 style="margin-top:12px">一次最多输 2–3 个买入</h3>
+        <p style="margin:0;font-size:14px">到了就起身。不是因为你会更菜，而是因为"赢回来"这个念头会改变你的决策质量。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill">波动</span>
+        <h3 style="margin-top:12px">好牌也会输一整周</h3>
+        <p style="margin:0;font-size:14px">一个稳定的赢家，两万手牌内出现 20 个买入的下滑是很正常的。用短期结果判断自己的水平，是最贵的错误。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="panel reveal" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+      <div>
+        <h3 style="margin-bottom:4px">全都看完了，测一下记住了多少</h3>
+        <p style="margin:0;font-size:14px">16 道题，覆盖规则、范围、翻后与数学。</p>
+      </div>
+      <a class="btn" href="quiz.html">05 · 进入练习场 →</a>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="assets/app.js"></script>
+<script src="assets/math.js"></script>
+</body>
+</html>

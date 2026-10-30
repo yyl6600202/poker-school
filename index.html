@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>德扑教室 · 从零学会德州扑克</title>
+<meta name="description" content="面向零基础的德州扑克教学：规则与牌型、位置与起手牌、翻后打法、赔率数学，配套交互矩阵、赔率计算器与决策测验。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317493a'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle' fill='%23c9ef63'%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;animation:none !important}</style></noscript>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="index">
+<a class="skip" href="#main">跳到正文</a>
+<header id="site-header"></header>
+
+<main id="main">
+
+  <!-- ================= 英雄区 ================= -->
+  <section class="wrap hero-center">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <div class="float-card f1">
+      <span class="fc-av">A♠</span>
+      <span>AK 对 22<small>翻前只有五五开</small></span>
+    </div>
+    <div class="float-card f2">
+      <span class="fc-av red">9♥</span>
+      <span>9 张补牌<small>到河牌约 35%</small></span>
+    </div>
+    <div class="float-card f3">
+      <span class="fc-av">½</span>
+      <span>25% 才够跟<small>半池下注的价格</small></span>
+    </div>
+    <div class="float-card f4">
+      <span class="fc-av">169</span>
+      <span>种起手牌<small>分 7 个位置打</small></span>
+    </div>
+
+    <span class="eyebrow">零基础 · 六个模块 · 约 40 分钟</span>
+    <h1>把德州扑克，学成<br><span class="hl">可以练的手艺</span></h1>
+    <p class="hero-lead">
+      大多数人输钱不是因为运气，而是因为凭感觉。这里把德扑拆成四块可以分别练的东西：牌型规则、位置与起手牌、翻后决策、赔率数学——每一块都有能直接上手操作的例子。
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="basics.html">从规则开始 →</a>
+      <a class="btn btn-ghost" href="quiz.html">做 16 道题测一下</a>
+    </div>
+    <div class="hero-meta">
+      <div><b data-count="169">169</b>种起手牌</div>
+      <div><b data-count="1326">1326</b>种组合</div>
+      <div><b data-count="9">9</b>种牌型</div>
+      <div><b data-count="4">4</b>轮下注</div>
+    </div>
+  </section>
+
+  <!-- ================= 关键词条 ================= -->
+  <section class="wrap" style="padding-bottom:56px">
+    <div class="logo-strip">
+      <span class="ls-label">学完你会掌握这些</span>
+      <div class="ls-items">
+        <span><i></i>牌型与行动顺序</span>
+        <span><i></i>位置与开池范围</span>
+        <span><i></i>牌面结构与 C-bet</span>
+        <span><i></i>底池赔率与补牌</span>
+        <span><i></i>资金与情绪管理</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 交互工具 ================= -->
+  <section class="section wrap" id="tools">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Interactive Tools</span>
+      <h2>不是读文章，是上手算</h2>
+      <p>德扑里 90% 的纠结其实是一次除法或一次比较。所有概念都配了可以拖动、可以点击的工具，结论自己就能算出来。</p>
+    </div>
+
+    <!-- 大卡片 -->
+    <div class="feature-card reveal">
+      <div>
+        <span class="pill green">核心工具</span>
+        <h3 style="margin-top:14px">169 格起手牌矩阵</h3>
+        <p>切换到任意位置，看这个位置该开池的到底是哪一小撮牌。点开一手牌，它会告诉你在枪口位是弃牌、在按钮位是加注——以及为什么。</p>
+        <div class="mini-list" style="margin-top:18px">
+          <div class="mini-row"><span>UTG 枪口位</span><b>8.7%</b></div>
+          <div class="mini-row"><span>BTN 按钮位</span><b>41.2%</b></div>
+        </div>
+        <a class="btn btn-sm" href="ranges.html#matrix" style="margin-top:20px">打开矩阵 →</a>
+      </div>
+      <div class="feature-mock">
+        <div class="mock-head">
+          <b>各位置开池比例</b>
+          <div class="mock-avs"><span>♠</span><span>♥</span><span>♦</span><span>♣</span></div>
+        </div>
+        <div class="mock-chart">
+          <i style="height:22%"></i>
+          <i style="height:32%"></i>
+          <i style="height:47%"></i>
+          <i style="height:69%"></i>
+          <i class="hot" style="height:96%"></i>
+          <i style="height:74%"></i>
+          <i style="height:90%"></i>
+        </div>
+        <div class="mock-axis"><span>UTG</span><span>MP</span><span>HJ</span><span>CO</span><span>BTN</span><span>SB</span><span>BB</span></div>
+      </div>
+    </div>
+
+    <!-- 两张小卡 -->
+    <div class="grid g2" style="margin-top:18px">
+      <div class="panel reveal">
+        <div class="mock-head" style="margin-bottom:10px">
+          <b>底池赔率</b><span class="pill">计算器</span>
+        </div>
+        <div class="mini-list">
+          <div class="mini-row"><span>底池 100，对手下注 50</span><b>25%</b></div>
+          <div class="mini-row"><span>底池 100，对手下注 100</span><b>33%</b></div>
+          <div class="mini-row"><span>底池 60，对手下注 15</span><b>17%</b></div>
+        </div>
+        <p style="font-size:13px;margin:16px 0 0">低于这个胜率还跟注，就是在给对手送钱。</p>
+        <a class="btn btn-sm btn-ghost" href="math.html#pot" style="margin-top:16px">自己算一次 →</a>
+      </div>
+      <div class="panel reveal">
+        <div class="mock-head" style="margin-bottom:10px">
+          <b>翻后清单</b><span class="pill">速查</span>
+        </div>
+        <div class="mini-act">
+          <span class="av">A♣</span>
+          <div><p>牌面 A♣ 7♦ 2♠（干燥高张）→ 小注、高频</p><small>对手范围里几乎没有 A</small></div>
+        </div>
+        <div class="mini-act">
+          <span class="av">9♥</span>
+          <div><p>9♥ 8♥ 5♠（两色连通）→ 降频，尺度放大</p><small>大盲的连张全都对上了</small></div>
+        </div>
+        <div class="mini-act">
+          <span class="av">K♦</span>
+          <div><p>河牌被全下加注 → 低级别几乎只有两对以上</p><small>顶对顶踢脚也该弃</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 学习路径（深色） ================= -->
+  <section class="wrap" style="padding-bottom:24px">
+    <div class="band-dark reveal">
+      <div class="section-head center">
+        <span class="eyebrow">Learning Path</span>
+        <h2>六块积木，搭成一套决策流程</h2>
+        <p>德扑是一层叠一层的：不懂牌型就判断不了牌力，不记位置就用不对范围，不会算赔率就会在听牌上无限送钱。按顺序走，别跳步。</p>
+      </div>
+      <div class="module-grid">
+        <a class="module-tile" href="basics.html">
+          <span class="mt-ic">01</span>
+          <b>规则与牌型</b>
+          <small>牌桌结构、盲注与行动顺序、九种牌型与出现概率</small>
+        </a>
+        <a class="module-tile" href="ranges.html">
+          <span class="mt-ic">02</span>
+          <b>位置与起手牌</b>
+          <small>169 格矩阵、7 个位置的开池范围、组合数换算</small>
+        </a>
+        <a class="module-tile" href="postflop.html">
+          <span class="mt-ic">03</span>
+          <b>翻后打法</b>
+          <small>牌面结构、范围优势、C-bet 尺度、听牌与半诈唬</small>
+        </a>
+        <a class="module-tile" href="math.html">
+          <span class="mt-ic">04</span>
+          <b>数学与赔率</b>
+          <small>底池赔率、补牌与 2/4 法则、期望值、诈唬平衡点</small>
+        </a>
+        <a class="module-tile" href="math.html#equity">
+          <span class="mt-ic">05</span>
+          <b>胜率模拟器</b>
+          <small>选两首牌，蒙特卡洛发牌一万两千次看谁领先</small>
+        </a>
+        <a class="module-tile" href="quiz.html">
+          <span class="mt-ic">06</span>
+          <b>练习场</b>
+          <small>16 道判断题，答错立刻给解释，最后给评级</small>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 引用 ================= -->
+  <section class="section wrap">
+    <div class="quote-block reveal">
+      <span class="qmark">“</span>
+      <blockquote>每一手牌都问同样三个问题：我代表什么？他可能是什么？这个价划不划算？</blockquote>
+      <cite><span class="av">♠</span>德扑教室 · 决策框架</cite>
+    </div>
+  </section>
+
+  <!-- ================= 三条观念 ================= -->
+  <section class="section wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Principles</span>
+      <h2>观念错了，技巧全白学</h2>
+      <p>这三条是后面所有内容的地基。如果你只能记住三件事，就记这三件。</p>
+    </div>
+    <div class="grid g3">
+      <div class="panel reveal">
+        <span class="pill">01</span>
+        <h3 style="margin-top:14px">位置比手牌更重要</h3>
+        <p style="margin:0">同样的 A9s，在按钮位是可以开池的好牌，在枪口位是应该弃掉的麻烦牌。位置决定了你能看到多少信息、能不能控制底池。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill">02</span>
+        <h3 style="margin-top:14px">跟注要有数学理由</h3>
+        <p style="margin:0">“我觉得能追上”不是理由。底池 100、对手下注 50，你需要 50 ÷ 200 = <em>25%</em> 的胜率；低于它，长期就是亏钱。</p>
+      </div>
+      <div class="panel reveal">
+        <span class="pill">03</span>
+        <h3 style="margin-top:14px">一致性胜过聪明</h3>
+        <p style="margin:0">每个决策点都问同样三个问题，答案稳定，打法自然稳定。偶尔的“神操作”赢不了长期，可复制的流程才赢。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 数据 ================= -->
+  <section class="wrap" style="padding-bottom:24px">
+    <div class="stats-row reveal">
+      <div class="stat"><b>169</b><span>起手牌类型</span></div>
+      <div class="stat"><b>1326</b><span>组合总数</span></div>
+      <div class="stat"><b>43.8%</b><span>一对的出现率</span></div>
+      <div class="stat"><b>16</b><span>道练习题</span></div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="wrap" style="padding-block:24px 0">
+    <div class="cta-band reveal">
+      <div>
+        <h2>读完就用，别只收藏</h2>
+        <p>花 8 分钟做一遍 16 道题，你会立刻知道自己哪一块是空的。答错不可怕，答错了没人告诉你为什么才可怕。</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-lime" href="quiz.html">进入练习场</a>
+        <a class="btn btn-ghost" href="ranges.html">先看起手牌矩阵</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
