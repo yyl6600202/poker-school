@@ -48,6 +48,8 @@ if ($LASTEXITCODE -ne 0) {
   Write-Host "  · 网页上的仓库还没建（或名字拼错）"
   Write-Host "  · 仓库是私有的，而免费版 Pages 只支持公开仓库"
   Write-Host "  · 需要登录 GitHub（用弹出的窗口或 Personal Access Token）"
+  Write-Host "  · 报 schannel / SEC_E 证书错误时执行：git config http.sslBackend openssl"
+  Write-Host "  · 报 Connection was reset / 超时：代理或梯子干扰，先关掉再试"
   exit 1
 }
 
